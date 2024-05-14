@@ -1,6 +1,12 @@
+import { useNavigate } from "react-router-dom"
 import { LayoutDashboard } from "./layout/LayoutDashboard"
+import { useEffect } from "react"
 
 function App() {
+  const navigate = useNavigate()
+  useEffect(() => {
+    navigate('/')
+  },[])
   return (
     <LayoutDashboard>
       <section className="flex gap-8">
