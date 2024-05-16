@@ -1,11 +1,7 @@
-import { useEffect } from "react";
+import { SedesSelect } from "../../../components/SedesSelect";
 import { Product, addProduct } from "../../../firebase/service/addProduct";
-import { useDataStore } from "../../../store/dataStore";
-import { getSedes } from "../../../firebase/service/getSedes";
 
 export const CrearProductoForm = () => {
-	const sedes = useDataStore(state => state.sede)
-	const setSedes = useDataStore(state => state.setSedes)
 	const onCreateProduct = async(e:any) => {
 		e.preventDefault()
 		const {name_product, sede_product, price_product} = Object.fromEntries(new FormData(e.target))		
@@ -15,13 +11,6 @@ export const CrearProductoForm = () => {
 			price: price_product
 		} as Product)
 	}
-
-	useEffect(() => {
-		(async() => {
-			const sedes = await getSedes()
-			setSedes(sedes)
-		})()
-	},[])
   return (
 	<form onSubmit={onCreateProduct}>
 		<h1 className="text-4xl font-bold mb-5">Crear productos</h1>
@@ -31,15 +20,7 @@ export const CrearProductoForm = () => {
 		</label>
 		<label className="block mb-3">
 			<p className="text-lg font-bold">Sede</p>
-			<select disabled={!sedes} className="border p-2 text-lg" name="sede_product" id="sede_product">
-				{
-					sedes.length === 0
-					? <option>Cargando Sedes..</option>
-					: sedes.map((sede:any) => (
-						<option value={sede.id} key={sede.id}>{sede.nombre}</option>
-					))
-				}
-			</select>
+			<SedesSelect />
 		</label>
 		<label className="block mb-3">
 			<p className="text-lg font-bold">Precio</p>
