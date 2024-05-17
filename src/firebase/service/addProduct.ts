@@ -2,6 +2,7 @@ import { addDoc, collection, doc } from "firebase/firestore"
 import { FirebaseDB } from "../config"
 
 export type Product = {
+	id: string
 	name: string
 	price: string
 	sede: string
