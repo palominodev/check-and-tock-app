@@ -1,28 +1,29 @@
 import { useEffect } from "react";
 import { SedesSelect } from "../../components/SedesSelect"
-import { getReport } from "../../firebase/service/getReport";
-import { useDataStore } from "../../store/dataStore";
+import { useReportes } from "../../hooks/useReportes";
+import { useFilterStore } from "../../store/filtersStore";
 
 export const InventarioPage = () => {
-	const reportes = useDataStore(state => state.reporte)
-	const setReporte = useDataStore(state => state.setReportes)
+	const {reportes,filterReportes} = useReportes()
+	const date = useFilterStore(state => state.selectDate)
+	const selectSede = useFilterStore(state => state.selectSede)
+	const setDate = useFilterStore(state => state.setDate)
+
+
 	useEffect(() => {
-		(async () => {
+		if(selectSede !== '' && date !== '') {
+			filterReportes(selectSede);
+			console.log(date);
 			
-			const reportesFetch = await getReport()
-			
-			if(!reportesFetch) return
-			console.log(reportesFetch);
-			
-			setReporte(reportesFetch)
-		})()
-	}, []);
+		}
+	}, [selectSede, date])
+	
   return (
 	<section className="w-full h-full grid grid-rows-12 auto">
 		<header className="flex justify-between mt-20 ">
 			<label htmlFor="fecha">
 				<p className="mb-2 font-bold text-lg">Seleccionar fecha</p>
-				<input className="p-4 border rounded-lg" type="date" name="fecha" id="fecha"/>
+				<input value={date} onChange={(e) => setDate(e.target.value)} className="p-4 border rounded-lg" type="date" name="fecha" id="fecha"/>
 			</label>
 			<label htmlFor="sede">
 				<p className="mb-2 font-bold text-lg">Elegir sede</p>
@@ -39,11 +40,18 @@ export const InventarioPage = () => {
 							<th>Cantidad</th>
 						</tr>
 					</thead>
-					<tbody>
+					{
+						date === ''
+						? <p>Seleccionar una fecha</p>
+						: <tbody>
 						{
 							reportes.length === 0
-							? <p>No hay data</p>
-							: reportes.map(reporte => (
+							? 	<tr className="*:p-2 odd:bg-slate-200 *:border">
+									<td>Cargando...</td>
+									<td>Cargando...</td>
+									<td>Cargando...</td>
+								</tr>
+							:	reportes.map(reporte => (
 								<tr key={reporte.id} className="*:p-2 odd:bg-slate-200 *:border">
 									<td>{reporte.nombre}</td>
 									<td>{reporte.precio}</td>
@@ -51,7 +59,7 @@ export const InventarioPage = () => {
 								</tr>
 							))
 						}
-					</tbody>
+					</tbody>}
 				</table>
 			</div>
 		</main>

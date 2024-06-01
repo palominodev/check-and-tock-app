@@ -1,6 +1,4 @@
 import { create } from 'zustand'
-import { Product } from '../firebase/service/addProduct';
-
 export type Sede = {
 	id: string;
 	nombre: string
@@ -12,6 +10,7 @@ export type Reporte = {
 	fecha: Date;
 	nombre: string;
 	precio: number;
+	sede: string
 }
 
 type State = {

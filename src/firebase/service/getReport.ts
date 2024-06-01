@@ -12,10 +12,10 @@ try {
 		  fecha: reporte.fecha.toDate(),
 		  precio: producto?.price,
 		  cantidad: reporte.cantidad,
-		  nombre: producto?.name
+		  nombre: producto?.name,
+		  sede: reporte?.sede?.id
 		};
 	  }));
-	  console.log(allReporte);
 	  return allReporte; // Devuelve el resultado si necesitas usarlo en otro lugar
 	} catch (error) {
 		console.error("Error al obtener el reporte:", error);
