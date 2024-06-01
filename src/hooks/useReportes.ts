@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDataStore } from "../store/dataStore";
 import { getReport } from "../firebase/service/getReport";
 import { useFilterStore } from "../store/filtersStore";
+import { parseTime } from "../lib/parseTime";
 
 export const useReportes = () => {
 	const reportes = useDataStore(state => state.reporte)
@@ -16,9 +17,14 @@ export const useReportes = () => {
 			setFilterReportes(reportesFetch)
 		})()
 	}, [])
-	const processfilterReportes = (sede:string) => {
-		const reportesFiltrados = reportes.filter(reporte => reporte.sede === sede)
-		setFilterReportes(reportesFiltrados)
+	const processfilterReportes = (sede:string,date:string) => {
+		
+		const reportesFiltradosPorSede = reportes.filter(reporte => reporte.sede === sede)
+		
+		const reportesFiltradosPorFecha = reportesFiltradosPorSede.filter(reporte => parseTime(reporte.fecha) === date)
+
+		
+		setFilterReportes(reportesFiltradosPorFecha)
 	}
   	return {
 		reportes: filterReportes,

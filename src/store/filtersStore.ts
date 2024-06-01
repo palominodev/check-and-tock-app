@@ -1,5 +1,6 @@
 import { create } from "zustand"
 import { Reporte } from "./dataStore"
+import { parseTime } from "../lib/parseTime"
 
 type State = {
 	selectSede: string,
@@ -11,16 +12,12 @@ type State = {
 }
 
 const date = new Date()
-const year = date.getFullYear();
-const month = String(date.getMonth() + 1).padStart(2, '0');
-const day = String(date.getDate()).padStart(2, '0');
-const formattedDate = `${year}-${month}-${day}`;
 
 
 
 const InitialState = {
 	filterReportes: [],
-	selectDate: formattedDate
+	selectDate: parseTime(date)
 }
 
 export const useFilterStore = create<State>((set) => ({
