@@ -4,15 +4,14 @@ import { useReportes } from "../../hooks/useReportes";
 import { useFilterStore } from "../../store/filtersStore";
 
 export const InventarioPage = () => {
-	const {reportes,filterReportes} = useReportes()
 	const date = useFilterStore(state => state.selectDate)
+	const {reportes,filterReportes} = useReportes()
 	const selectSede = useFilterStore(state => state.selectSede)
 	const setDate = useFilterStore(state => state.setDate)
-
-
+	
 	useEffect(() => {
 		if(selectSede !== '' && date !== '') {
-			filterReportes(selectSede, date);
+			filterReportes(selectSede, date);			
 		}
 	}, [selectSede, date])
 	
@@ -34,8 +33,9 @@ export const InventarioPage = () => {
 					<thead className="sticky top-0 bg-red-700">
 						<tr className="*:p-2 *:border-2">
 							<th>Nombre</th>
-							<th>Precio</th>
+							<th>Categoria</th>
 							<th>Cantidad</th>
+							<th>Sede</th>
 						</tr>
 					</thead>
 					{
@@ -48,12 +48,14 @@ export const InventarioPage = () => {
 									<td>Cargando...</td>
 									<td>Cargando...</td>
 									<td>Cargando...</td>
+									<td>Cargando...</td>
 								</tr>
-							:	reportes.map(reporte => (
-								<tr key={reporte.id} className="*:p-2 odd:bg-slate-200 *:border">
-									<td>{reporte.nombre}</td>
-									<td>{reporte.precio}</td>
-									<td>{reporte.cantidad}</td>
+							:	reportes.map((reporte,i) => (
+								<tr key={i} className="*:p-2 odd:bg-slate-200 *:border">
+									<td>{reporte.name}</td>
+									<td>{reporte.categoria}</td>
+									<td>{reporte.count}</td>
+									<td>{reporte.sede}</td>
 								</tr>
 							))
 						}

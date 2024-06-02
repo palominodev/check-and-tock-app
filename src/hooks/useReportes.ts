@@ -2,29 +2,23 @@ import { useEffect } from "react";
 import { useDataStore } from "../store/dataStore";
 import { getReport } from "../firebase/service/getReport";
 import { useFilterStore } from "../store/filtersStore";
-import { parseTime } from "../lib/parseTime";
 
 export const useReportes = () => {
 	const reportes = useDataStore(state => state.reporte)
+	const date = useFilterStore(state => state.selectDate)
 	const filterReportes = useFilterStore(state => state.filterReportes)
 	const setFilterReportes = useFilterStore(state => state.setFilterReportes)
 	const setReporte = useDataStore(state => state.setReportes)
 	useEffect(() => {
 		(async () => {
-			const reportesFetch = await getReport()
+			const reportesFetch = await getReport({fecha: date})	
 			if(!reportesFetch) return
-			setReporte(reportesFetch)
-			setFilterReportes(reportesFetch)
+			setReporte(reportesFetch.productos)
+			setFilterReportes(reportesFetch.productos)
 		})()
 	}, [])
 	const processfilterReportes = (sede:string,date:string) => {
-		
-		const reportesFiltradosPorSede = reportes.filter(reporte => reporte.sede === sede)
-		
-		const reportesFiltradosPorFecha = reportesFiltradosPorSede.filter(reporte => parseTime(reporte.fecha) === date)
-
-		
-		setFilterReportes(reportesFiltradosPorFecha)
+		setFilterReportes(reportes)
 	}
   	return {
 		reportes: filterReportes,

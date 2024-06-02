@@ -1,22 +1,62 @@
-import { getCollections } from "../../lib/getCollections"
-import { getDocument } from "../../lib/getDocument"
-import { Reporte } from "../../store/dataStore";
+import {
+	Timestamp,
+	collection,
+	getDocs,
+	query,
+	where,
+} from "firebase/firestore";
+import { FirebaseDB } from "../config";
+import { addDays, set } from "date-fns";
 
-export const getReport = async () => {
-try {
-	  const reportesCollection = await getCollections('reporte');
-	  const allReporte:Reporte[] = await Promise.all(reportesCollection.map(async (reporte) => {
-		const producto = await getDocument('producto', reporte.producto.id)
-		return {
-		  id: reporte.id,
-		  fecha: reporte.fecha.toDate(),
-		  precio: producto?.price,
-		  cantidad: reporte.cantidad,
-		  nombre: producto?.name,
-		  sede: reporte?.sede?.id
-		};
-	  }));
-	  return allReporte; // Devuelve el resultado si necesitas usarlo en otro lugar
+export const getReport = async ({ fecha }: { fecha: string }) => {
+	try {
+		const date_format = addDays(new Date(fecha), 1);
+		const startDate = Timestamp.fromDate(
+			set(date_format, {
+				hours: 0,
+				minutes: 0,
+				seconds: 0,
+			})
+		);
+		const endDate = Timestamp.fromDate(
+			set(date_format, {
+				hours: 23,
+				minutes: 59,
+				seconds: 59,
+			})
+		);
+		const reportesSnapshot = collection(FirebaseDB, "reportes");
+
+		const q = query(
+			reportesSnapshot,
+			where("fecha", ">=", startDate),
+			where("fecha", "<=", endDate)
+		);
+		const reportesCollection = await getDocs(q);
+		const allReportes: any[] = [];
+		reportesCollection.forEach((reporte) => {
+			allReportes.push(reporte.data());
+		});
+
+		const [reportesMapped] = allReportes.flatMap((reporte) => {
+			return {
+				fecha: reporte.fecha,
+				nombre: reporte.nombre,
+				productos: reporte.productos.flatMap(({products}: any) => {
+					return (products.map((item:any) => ({
+						...item,
+						sede: reporte.sede,
+					})))
+					
+				}),
+			}
+			
+		});
+		console.log(reportesMapped);
+		
+		
+
+		return reportesMapped;
 	} catch (error) {
 		console.error("Error al obtener el reporte:", error);
 	}
