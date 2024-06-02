@@ -6,6 +6,7 @@ export type Product = {
 	name: string
 	price: string
 	sede: string
+	categoria: string
 }
 export const addProduct = async(product: Product) =>{
 	const arrayProduct:any = []

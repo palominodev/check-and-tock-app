@@ -1,14 +1,16 @@
+import { CategoriaSelect } from "../../../components/CategoriaSelect";
 import { SedesSelect } from "../../../components/SedesSelect";
 import { Product, addProduct } from "../../../firebase/service/addProduct";
 
 export const CrearProductoForm = () => {
 	const onCreateProduct = async(e:any) => {
 		e.preventDefault()
-		const {name_product, sede_product, price_product} = Object.fromEntries(new FormData(e.target))		
+		const {name_product, sede_product, price_product,categoria_product} = Object.fromEntries(new FormData(e.target))		
 		await addProduct({
 			name: name_product,
 			sede: sede_product,
-			price: price_product
+			price: price_product,
+			categoria: categoria_product
 		} as Product)
 	}
   return (
@@ -21,6 +23,10 @@ export const CrearProductoForm = () => {
 		<label className="block mb-3">
 			<p className="text-lg font-bold">Sede</p>
 			<SedesSelect />
+		</label>
+		<label className="block mb-3">
+			<p className="text-lg font-bold">Categoria</p>
+			<CategoriaSelect />
 		</label>
 		<label className="block mb-3">
 			<p className="text-lg font-bold">Precio</p>
