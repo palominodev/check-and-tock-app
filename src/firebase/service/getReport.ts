@@ -39,12 +39,15 @@ export const getReport = async ({ fecha }: { fecha: string }) => {
 		});
 
 		const [reportesMapped] = allReportes.flatMap((reporte) => {
+			
 			return {
 				fecha: reporte.fecha,
 				nombre: reporte.nombre,
-				productos: reporte.productos.flatMap(({products}: any) => {
+				productos: reporte.productos.flatMap(({products,name}: any) => {
+					
 					return (products.map((item:any) => ({
 						...item,
+						categoria: name,
 						sede: reporte.sede,
 					})))
 					
