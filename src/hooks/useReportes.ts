@@ -4,7 +4,6 @@ import { getReport } from "../firebase/service/getReport";
 import { useFilterStore } from "../store/filtersStore";
 
 export const useReportes = () => {
-	const reportes = useDataStore(state => state.reporte)
 	const date = useFilterStore(state => state.selectDate)
 	const filterReportes = useFilterStore(state => state.filterReportes)
 	const setFilterReportes = useFilterStore(state => state.setFilterReportes)
@@ -16,9 +15,14 @@ export const useReportes = () => {
 			setReporte(reportesFetch.productos)
 			setFilterReportes(reportesFetch.productos)
 		})()
-	}, [])
-	const processfilterReportes = (sede:string,date:string) => {
-		setFilterReportes(reportes)
+	}, [date])
+	const processfilterReportes = async(sede:string,date:string) => {
+		const reportesFetch = await getReport({fecha:date})
+		if(!reportesFetch) return console.log('No hay reportes');
+		
+		setReporte(reportesFetch.productos)
+		setFilterReportes(reportesFetch.productos)
+		
 	}
   	return {
 		reportes: filterReportes,

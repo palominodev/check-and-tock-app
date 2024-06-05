@@ -55,9 +55,14 @@ export const getReport = async ({ fecha }: { fecha: string }) => {
 			}
 			
 		});
-		console.log(reportesMapped);
 		
-		
+		if(!reportesMapped) {
+			return {
+				fecha: date_format,
+				nombre: undefined,
+				productos: []
+			}
+		}
 
 		return reportesMapped;
 	} catch (error) {
