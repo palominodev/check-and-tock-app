@@ -8,8 +8,14 @@ import {
 import { FirebaseDB } from "../config";
 import { addDays, set } from "date-fns";
 
-export const getReport = async ({ fecha }: { fecha: string }) => {
+type Props = { 
+	fecha: string
+	sede:string
+}
+
+export const getReport = async ({ fecha,sede }: Props) => {
 	try {
+		
 		const date_format = addDays(new Date(fecha), 1);
 		const startDate = Timestamp.fromDate(
 			set(date_format, {
@@ -30,9 +36,11 @@ export const getReport = async ({ fecha }: { fecha: string }) => {
 		const q = query(
 			reportesSnapshot,
 			where("fecha", ">=", startDate),
-			where("fecha", "<=", endDate)
+			where("fecha", "<=", endDate),
+			where("sede", "==", sede),
 		);
 		const reportesCollection = await getDocs(q);
+		
 		const allReportes: any[] = [];
 		reportesCollection.forEach((reporte) => {
 			allReportes.push(reporte.data());

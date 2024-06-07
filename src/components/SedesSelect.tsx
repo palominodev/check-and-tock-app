@@ -24,7 +24,7 @@ export const SedesSelect = () => {
 					sedes.length === 0
 					? <option>Cargando Sedes..</option>
 					: sedes.map((sede:any) => (
-						<option value={sede.id} key={sede.id}>{sede.nombre}</option>
+						<option value={sede.nombre} key={sede.id}>{sede.nombre}</option>
 					))
 				}
 	</select>

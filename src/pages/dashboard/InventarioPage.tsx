@@ -45,10 +45,10 @@ export const InventarioPage = () => {
 						{
 							reportes.length === 0
 							? 	<tr className="*:p-2 odd:bg-slate-200 *:border">
-									<td>Cargando...</td>
-									<td>Cargando...</td>
-									<td>Cargando...</td>
-									<td>Cargando...</td>
+									<td>Sin datos</td>
+									<td>Sin datos</td>
+									<td>Sin datos</td>
+									<td>Sin datos</td>
 								</tr>
 							:	reportes.map((reporte,i) => (
 								<tr key={i} className="*:p-2 odd:bg-slate-200 *:border">
