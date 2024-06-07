@@ -5,10 +5,11 @@ export type Sede = {
 }
 
 export type Reporte = {
+	name: string;
+	categoria: string;
+	count: string;
 	id: string;
-	cantidad: number;
 	fecha: Date;
-	nombre: string;
 	precio: number;
 	sede: string
 }
