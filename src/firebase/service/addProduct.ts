@@ -7,6 +7,7 @@ export type Product = {
 	price: string
 	sede: string
 	categoria: string
+	cantidad_minima: string
 }
 export const addProduct = async(product: Product) =>{
 	const arrayProduct:any = []
@@ -14,12 +15,13 @@ export const addProduct = async(product: Product) =>{
 	
 	const collectionProducts = collection(FirebaseDB, 'producto')
 	const querySnapshot = await getDocs(collectionProducts)
-
+	
 	querySnapshot.forEach(producto => {
 		arrayProduct.push(producto.data());
 	})
-
-	const isRepitedProduct = arrayProduct.some( (producto:any) => (producto.sede.path === sedeRef.path) && (producto.name === product.name))
+	
+	// const isRepitedProduct = arrayProduct.some( (producto:any) => (producto.sede.path === sedeRef.path) && (producto.name === product.name))
+	const isRepitedProduct = arrayProduct.some((producto:any) => ((producto.name.toLocaleLowerCase() === product.name.toLocaleLowerCase())))
 	
 	if(isRepitedProduct)return console.log('producto repetido');
 	
@@ -28,8 +30,10 @@ export const addProduct = async(product: Product) =>{
 	await addDoc(collection(FirebaseDB, "producto"),{
 		...product,
 		price: Number(product.price),
+		cantidad_minima: Number(product.cantidad_minima),
 		sede: sedeRef
 	});
+	console.table(product);
 	
 	
 }
