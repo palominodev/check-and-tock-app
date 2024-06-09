@@ -6,7 +6,7 @@ export const CrearProductoForm = () => {
 	const onCreateProduct = async(e:any) => {
 		e.preventDefault()
 		const {name_product, sede_product, price_product,categoria_product, cantidad_minima} = Object.fromEntries(new FormData(e.target))		
-		await addProduct({
+		console.log({
 			name: name_product,
 			sede: sede_product,
 			price: price_product,

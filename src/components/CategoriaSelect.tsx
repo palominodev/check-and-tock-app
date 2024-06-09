@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import { useDataStore } from "../store/dataStore"
 import { getCategorias } from "../firebase/service/getSedes"
 import { useFilterStore } from "../store/filtersStore"
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "./ui/select"
 
 export const CategoriaSelect = () => {
 	const categorias = useDataStore(state => state.categoria)
@@ -11,23 +12,29 @@ export const CategoriaSelect = () => {
 	useEffect(() => {
 		(async() => {
 			if(categorias.length === 0){
-				const categoriaFetch = await getCategorias()
-				console.log(categoriaFetch);
-				
+				const categoriaFetch = await getCategorias()				
 				setCategorias(categoriaFetch)
 			}
 		})()
 	},[])
   return (
-	<select onChange={(e) => setSelectedCategoria(e.target.value)} className="border p-2 text-lg" name="categoria_product" id="categoria_product">
-		<option selected disabled hidden>Elegir Categoria</option>
-				{
-					categorias.length === 0
-					? <option>Cargando categoria..</option>
-					: categorias.map((categoria:any) => (
-						<option value={categoria.name} key={categoria.id}>{categoria.name}</option>
-					))
-				}
-	</select>
+	<Select onValueChange={(e) => setSelectedCategoria(e)} name="categoria_product">
+		<SelectTrigger className="w-[188px]">
+			<SelectValue placeholder="Elegir categoria" />
+		</SelectTrigger>
+		<SelectContent>
+			<SelectGroup>
+				<SelectLabel>Categoria</SelectLabel>
+					{
+						categorias.length === 0
+						? <SelectItem value="a">Cargando categoria..</SelectItem>
+						: categorias.map((categoria:any) => (
+							<SelectItem value={categoria.name} key={categoria.id}>{categoria.name}</SelectItem>
+						))
+					}
+				
+			</SelectGroup>
+		</SelectContent>
+	</Select>
   )
 }
