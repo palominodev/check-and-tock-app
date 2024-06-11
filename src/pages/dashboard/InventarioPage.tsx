@@ -2,10 +2,11 @@ import { useEffect } from "react";
 import { SedesSelect } from "../../components/SedesSelect"
 import { useReportes } from "../../hooks/useReportes";
 import { useFilterStore } from "../../store/filtersStore";
+import { TablaData } from "@/components/TablaData";
 
 export const InventarioPage = () => {
 	const date = useFilterStore(state => state.selectDate)
-	const {reportes,filterReportes} = useReportes()
+	const {filterReportes} = useReportes()
 	const selectSede = useFilterStore(state => state.selectSede)
 	const setDate = useFilterStore(state => state.setDate)
 	
@@ -29,38 +30,7 @@ export const InventarioPage = () => {
 		</header>
 		<main className="my-10 row-start-5 row-end-13">
 			<div className="h-full overflow-y-scroll">
-				<table className="w-full">
-					<thead className="sticky top-0 bg-red-700">
-						<tr className="*:p-2 *:border-2">
-							<th>Nombre</th>
-							<th>Categoria</th>
-							<th>Cantidad</th>
-							<th>Sede</th>
-						</tr>
-					</thead>
-					{
-						date === ''
-						? <p>Seleccionar una fecha</p>
-						: <tbody>
-						{
-							reportes.length === 0
-							? 	<tr className="*:p-2 odd:bg-slate-200 *:border">
-									<td>Sin datos</td>
-									<td>Sin datos</td>
-									<td>Sin datos</td>
-									<td>Sin datos</td>
-								</tr>
-							:	reportes.map((reporte,i) => (
-								<tr key={i} className="*:p-2 odd:bg-slate-200 *:border">
-									<td>{reporte.name}</td>
-									<td>{reporte.categoria}</td>
-									<td>{reporte.count}</td>
-									<td>{reporte.sede}</td>
-								</tr>
-							))
-						}
-					</tbody>}
-				</table>
+				<TablaData />
 			</div>
 		</main>
 	</section>
