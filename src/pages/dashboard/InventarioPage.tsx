@@ -3,12 +3,12 @@ import { SedesSelect } from "../../components/SedesSelect"
 import { useReportes } from "../../hooks/useReportes";
 import { useFilterStore } from "../../store/filtersStore";
 import { TablaData } from "@/components/TablaData";
+import { CalendarPicker } from "@/components/CalendarPicker";
 
 export const InventarioPage = () => {
 	const date = useFilterStore(state => state.selectDate)
 	const {filterReportes} = useReportes()
 	const selectSede = useFilterStore(state => state.selectSede)
-	const setDate = useFilterStore(state => state.setDate)
 	
 	useEffect(() => {
 		if(selectSede !== '' && date !== '') {
@@ -21,7 +21,7 @@ export const InventarioPage = () => {
 		<header className="flex justify-between mt-20 ">
 			<label htmlFor="fecha">
 				<p className="mb-2 font-bold text-lg">Seleccionar fecha</p>
-				<input value={date} onChange={(e) => setDate(e.target.value)} className="p-4 border rounded-lg" type="date" name="fecha" id="fecha"/>
+				<CalendarPicker />
 			</label>
 			<label htmlFor="sede">
 				<p className="mb-2 font-bold text-lg">Elegir sede</p>

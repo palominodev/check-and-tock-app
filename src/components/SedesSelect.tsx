@@ -6,7 +6,7 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrig
 
 export const SedesSelect = () => {
 	const sedes = useDataStore(state => state.sede)
-	// const selectedSede = useFilterStore(state => state.selectSede)
+	const sede = useFilterStore(state => state.selectSede)
 	const setSedes = useDataStore(state => state.setSedes)
 	const setSelectedSede = useFilterStore(state => state.setSelectedSede)
 
@@ -22,6 +22,7 @@ export const SedesSelect = () => {
 		<Select
 			onValueChange={(value) => setSelectedSede(value)}
 			name="sede_product"
+			value={sede}
 		>
 			<SelectTrigger className="w-[188px]">
 				<SelectValue placeholder="Elegir Sede" />

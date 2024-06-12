@@ -3,7 +3,6 @@ import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, Tabl
 
 
 export const TablaData = () => {
-	// const date = useFilterStore(state => state.selectDate)
 	const { reportes } = useReportes()
 	return (
 		<Table className="relative">
@@ -20,7 +19,7 @@ export const TablaData = () => {
 				{
 					reportes.length === 0 ? null
 						: reportes.map(reporte => (
-							<TableRow key={reporte.id}>
+							<TableRow key={reporte.name}>
 								<TableCell className="font-medium">{reporte.categoria}</TableCell>
 								<TableCell>{reporte.sede}</TableCell>
 								<TableCell>{reporte.name}</TableCell>
