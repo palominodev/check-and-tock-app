@@ -9,8 +9,8 @@ type State = {
 	setDate: (newDate:string) => void
 	setSelectedSede: (sede:string) => void
 	setSelectedCategoria: (categoria:string) => void
-	filterReportes: Reporte[]
-	setFilterReportes: (reportes:Reporte[]) => void
+	filterReportes: Reporte
+	setFilterReportes: (reportes:Reporte) => void
 }
 
 const date = new Date()
@@ -18,7 +18,11 @@ const date = new Date()
 
 
 const InitialState = {
-	filterReportes: [],
+	filterReportes: {
+		fecha: date,
+		nombre: "",
+		productos: []
+	},
 	selectDate: parseTime(date)
 }
 
@@ -29,5 +33,5 @@ export const useFilterStore = create<State>((set) => ({
 	setDate: (newDate:string) => set(() => ({selectDate: newDate})),
 	setSelectedSede: (sede:string) => set(() => ({selectSede: sede})),
 	setSelectedCategoria: (categoria:string) => set(() => ({selectCategoria: categoria})),
-	setFilterReportes: (reporte: Reporte[]) => set(() => ({filterReportes: reporte}))
+	setFilterReportes: (reporte: Reporte) => set(() => ({filterReportes:reporte}))
 }))

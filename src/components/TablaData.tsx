@@ -17,8 +17,8 @@ export const TablaData = () => {
 			</TableHeader>
 			<TableBody>
 				{
-					reportes.length === 0 ? null
-						: reportes.map(reporte => (
+					reportes.productos.length === 0 ? null
+						: reportes.productos.map(reporte => (
 							<TableRow key={reporte.name}>
 								<TableCell className="font-medium">{reporte.categoria}</TableCell>
 								<TableCell>{reporte.sede}</TableCell>
