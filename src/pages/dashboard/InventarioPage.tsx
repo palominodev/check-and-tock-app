@@ -23,14 +23,18 @@ export const InventarioPage = () => {
 	<section className="w-full h-full grid grid-rows-12 auto">
 		<header className="flex justify-between mt-20 ">
 			<InfoCard reportes={reportes} />
-			<label htmlFor="fecha">
-				<p className="mb-2 font-bold text-lg">Seleccionar fecha</p>
-				<CalendarPicker />
-			</label>
-			<label htmlFor="sede">
-				<p className="mb-2 font-bold text-lg">Elegir sede</p>
-				<SedesSelect />
-			</label>
+			<div>
+				<label htmlFor="fecha">
+					<p className="mb-2 font-bold text-lg">Seleccionar fecha</p>
+					<CalendarPicker />
+				</label>
+			</div>
+			<div>
+				<label htmlFor="sede">
+					<p className="mb-2 font-bold text-lg">Elegir sede</p>
+					<SedesSelect />
+				</label>
+			</div>
 		</header>
 		<main className="my-10 row-start-5 row-end-13">
 			

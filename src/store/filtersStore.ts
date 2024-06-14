@@ -1,5 +1,5 @@
 import { create } from "zustand"
-import { ItemReporte, Reporte } from "./dataStore"
+import { Reporte } from "./dataStore"
 import { parseTime } from "../lib/parseTime"
 
 type State = {
