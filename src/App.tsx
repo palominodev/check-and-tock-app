@@ -1,22 +1,26 @@
 import { useNavigate } from "react-router-dom"
 import { LayoutDashboard } from "./layout/LayoutDashboard"
 import { useEffect } from "react"
+import { CalendarPicker } from "./components/CalendarPicker"
+import { ReportCards } from "./components/ReportCards"
+
 
 function App() {
+  
   const navigate = useNavigate()
   useEffect(() => {
     navigate('/')
-  },[])
+  }, [])
+
+  
   return (
     <LayoutDashboard>
-      <section className="flex gap-8">
-        <article className="p-6 shadow-lg rounded-lg cursor-pointer">
-          <h2 className="text-xl font-bold ">Ver Inventarios</h2>
-        </article>
-        <article className="p-6 shadow-lg rounded-lg cursor-pointer">
-          <h2 className="text-xl font-bold ">Gestionar Productos</h2>
-        </article>
-      </section>
+      <div className="h-full mt-40 w-full">
+        <div className="flex justify-end">
+          <CalendarPicker />
+        </div>
+        <ReportCards />
+      </div>
     </LayoutDashboard>
   )
 }

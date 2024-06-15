@@ -1,23 +1,13 @@
-import { useEffect } from "react"
 import { useDataStore } from "../store/dataStore"
-import { getSedes } from "../firebase/service/getSedes"
 import { useFilterStore } from "../store/filtersStore"
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "./ui/select"
+import { useFetchSedes } from "@/hooks/useSedes"
 
 export const SedesSelect = () => {
+	useFetchSedes()
 	const sedes = useDataStore(state => state.sede)
 	const sede = useFilterStore(state => state.selectSede)
-	const setSedes = useDataStore(state => state.setSedes)
 	const setSelectedSede = useFilterStore(state => state.setSelectedSede)
-
-	useEffect(() => {
-		(async () => {
-			if (sedes.length === 0) {
-				const sedesFetch = await getSedes()
-				setSedes(sedesFetch)
-			}
-		})()
-	}, [])
 	return (
 		<Select
 			onValueChange={(value) => setSelectedSede(value)}

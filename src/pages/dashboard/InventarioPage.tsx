@@ -13,8 +13,6 @@ export const InventarioPage = () => {
 	
 	useEffect(() => {
 		if(selectSede !== '' && date !== '') {
-			console.log(reportes);
-			
 			filterReportes(selectSede, date);			
 		}
 	}, [selectSede, date])

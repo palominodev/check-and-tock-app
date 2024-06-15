@@ -15,6 +15,7 @@ export const LateralMenu = () => {
 	return (
 		<div className="flex col-span-2">
 			<aside className="flex flex-col p-10 gap-4 justify-center">
+				<Button variant={"outline"} onClick={() => navigate('/')} className="shadow-lg p-2 rounded-lg">Dashboard</Button>
 				<Button variant={"outline"} onClick={() => navigate('/inventario')} className="shadow-lg p-2 rounded-lg">Ver Reporte</Button>
 				<Button variant={"outline"} onClick={() => navigate('/productos')} className="shadow-lg p-2 rounded-lg">Gestionar productos</Button>
 				<Button variant={"destructive"} onClick={onLogout} className="shadow-lg p-2 rounded-lg">Cerrar Sesión</Button>
