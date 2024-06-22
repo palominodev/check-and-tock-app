@@ -2,6 +2,8 @@ import React from "react"
 
 export const LayoutGestionProducto = ({ children }: Readonly<{ children: React.ReactNode }>) => {
   return (
-	<div>{children}</div>
+    <section className="w-full h-full" >
+      {children}
+    </section>
   )
 }

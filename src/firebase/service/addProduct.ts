@@ -1,14 +1,8 @@
 import { addDoc, collection, doc, getDocs } from "firebase/firestore"
 import { FirebaseDB } from "../config"
+import { Product } from "@/store/dataStore"
 
-export type Product = {
-	id: string
-	name: string
-	price: string
-	sede: string
-	categoria: string
-	cantidad_minima: string
-}
+
 export const addProduct = async(product: Product) =>{
 	try {
 		const arrayProduct:any = []

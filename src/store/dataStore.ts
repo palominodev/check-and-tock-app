@@ -4,6 +4,15 @@ export type Sede = {
 	nombre: string
 }
 
+export type Product = {
+	id: string
+	name: string
+	price: string
+	sede: string
+	categoria: string
+	cantidad_minima: string
+}
+
 export type ItemReporte = {
 	name: string;
 	categoria: string;
@@ -33,6 +42,7 @@ export type Categoria = {
 }
 
 type State = {
+	allProducts: Product[];
 	allReports: AllReport
 	sede: Sede[],
 	categoria: Categoria[]
@@ -41,9 +51,11 @@ type State = {
 	setReportes: (reportes: Reporte) => void
 	setCategorias: (categorias: Categoria[]) => void
 	setAllReports: (allReport: AllReport) => void
+	setAllProducts: (allProducts: Product[]) => void
 }
 
 export const useDataStore = create<State>((set) => ({
+	allProducts: [],
 	sede: [],
 	categoria: [],
 	reporte: {
@@ -55,5 +67,6 @@ export const useDataStore = create<State>((set) => ({
 	setSedes: (sedes:Sede[]) => set(() => ({sede: sedes})),
 	setCategorias: (categoria: Categoria[]) => set(() => ({categoria: categoria})),
 	setReportes: (reporte:Reporte) => set(() => ({reporte})),
-	setAllReports: (allReport:AllReport) => set(() => ({allReports: allReport}))
+	setAllReports: (allReport:AllReport) => set(() => ({allReports: allReport})),
+	setAllProducts: (allProducts) => set(() => ({allProducts: allProducts}))
 }))
