@@ -36,7 +36,7 @@ export const InventarioPage = () => {
 		</header>
 		<main className="my-10 row-start-5 row-end-13">
 			
-			<div className="h-full overflow-y-scroll">
+			<div className="">
 				<TablaData />
 			</div>
 		</main>
