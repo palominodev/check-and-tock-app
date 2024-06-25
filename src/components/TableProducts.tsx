@@ -41,8 +41,8 @@ export const TableProducts = () => {
 		
 									<PopoverContent className="flex flex-col gap-2 w-48">
 										<h4 className="font-bold text-lg">Opciones:</h4>
-										<Link to={'editar'} className={`${buttonVariants({variant: 'secondary'})}`}>Agregar</Link>
-										<Link to={'/'} className={`${buttonVariants({variant: 'destructive'})}`}>Eliminar</Link>
+										<Link to={'editar'} className={`${buttonVariants({variant: 'outline'})}`}>Editar</Link>
+										<Link to={'agregar'} className={`${buttonVariants({variant: 'outline'})}`}>Agregar</Link>
 									</PopoverContent>
 								</Popover>
 							</TableCell>
