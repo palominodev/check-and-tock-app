@@ -6,9 +6,10 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrig
 
 export const CategoriaSelect = () => {
 	const categorias = useDataStore(state => state.categoria)
-	const setCategorias = useDataStore(state => state.setCategorias)
+	const categoria = useFilterStore(state => state.selectCategoria) || { id: '', nombre: '' }
 	const setSelectedCategoria = useFilterStore(state => state.setSelectedCategoria)
-
+	
+	const setCategorias = useDataStore(state => state.setCategorias)
 	useEffect(() => {
 		(async() => {
 			if(categorias.length === 0){
@@ -17,8 +18,16 @@ export const CategoriaSelect = () => {
 			}
 		})()
 	},[])
+
+	useEffect(() => {
+		console.log(categoria)
+		setSelectedCategoria(categoria.id)
+	},[categoria])
   return (
-	<Select onValueChange={(e) => setSelectedCategoria(e)} name="categoria_product">
+	<Select 
+		onValueChange={(categoryId) => setSelectedCategoria(categoryId)} name="categoria_product"
+		value={categoria.id}
+	>
 		<SelectTrigger className="w-[188px]">
 			<SelectValue placeholder="Elegir categoria" />
 		</SelectTrigger>
@@ -29,7 +38,7 @@ export const CategoriaSelect = () => {
 						categorias.length === 0
 						? <SelectItem value="a">Cargando categoria..</SelectItem>
 						: categorias.map((categoria:any) => (
-							<SelectItem value={categoria.name} key={categoria.id}>{categoria.name}</SelectItem>
+							<SelectItem value={categoria.id} key={categoria.id}>{categoria.name}</SelectItem>
 						))
 					}
 				

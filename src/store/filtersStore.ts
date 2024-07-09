@@ -1,14 +1,14 @@
 import { create } from "zustand"
-import { Reporte, Sede, useDataStore } from "./dataStore"
+import { Categoria, Reporte, Sede, useDataStore } from "./dataStore"
 import { parseTime } from "../lib/parseTime"
 
 type State = {
 	selectSede: Sede
 	selectDate: string
-	selectCategoria: string
+	selectCategoria: Categoria
 	setDate: (newDate:string) => void
 	setSelectedSede: (sede:string) => void
-	setSelectedCategoria: (categoria:string) => void
+	setSelectedCategoria: (categoryId:string) => void
 	filterReportes: Reporte
 	setFilterReportes: (reportes:Reporte) => void
 }
@@ -31,7 +31,10 @@ export const useFilterStore = create<State>((set) => ({
 		id: "",
 		nombre: ""
 	},
-	selectCategoria: '',
+	selectCategoria: {
+		id: "",
+		name: ""
+	},
 	...InitialState,
 	setDate: (newDate:string) => set(() => ({selectDate: newDate})),
 	setSelectedSede: (sedeId:string) => set(() => {
@@ -43,6 +46,14 @@ export const useFilterStore = create<State>((set) => ({
 			selectSede: sede
 		}
 	}),
-	setSelectedCategoria: (categoria:string) => set(() => ({selectCategoria: categoria})),
+	setSelectedCategoria: (categoryId:string) => set(() => {
+		const category = useDataStore.getState().categoria.find(c => c.id === categoryId)
+		if(!category) return {
+			selectCategoria: category
+		}
+		return {
+			selectCategoria: category
+		}
+	}),
 	setFilterReportes: (reporte: Reporte) => set(() => ({filterReportes:reporte}))
 }))

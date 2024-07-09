@@ -11,14 +11,20 @@ import { useParams } from "react-router-dom"
 export const EditarProductoForm = () => {
 	const products = useDataStore(state => state.allProducts)
 	const setSede = useFilterStore(state => state.setSelectedSede)
+	const setCategory = useFilterStore(state => state.setSelectedCategoria)
 	const {id_producto} = useParams()
 	const product = products.find(p => p.id === id_producto)
 	if(!product) return null
 	
 
 	useEffect(() => {
+		console.log(product);
+		
 		if(product?.sede?.id) {
 			setSede(product?.sede.id)
+		}
+		if(product?.category?.id) {
+			setCategory(product.category.id)
 		}
 	},[product, setSede])
 	
