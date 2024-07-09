@@ -1,18 +1,23 @@
+import { useEffect } from "react"
 import { useDataStore } from "../store/dataStore"
 import { useFilterStore } from "../store/filtersStore"
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "./ui/select"
-import { useFetchSedes } from "@/hooks/useSedes"
 
 export const SedesSelect = () => {
-	useFetchSedes()
 	const sedes = useDataStore(state => state.sede)
-	const sede = useFilterStore(state => state.selectSede)
+	const sede = useFilterStore(state => state.selectSede) || { id: '', nombre: '' }
 	const setSelectedSede = useFilterStore(state => state.setSelectedSede)
+
+	useEffect(() => {
+		setSelectedSede(sede.id)
+		console.log(0)
+	},[sede])
+
 	return (
 		<Select
-			onValueChange={(value) => setSelectedSede(value)}
+			onValueChange={(sedeId) => setSelectedSede(sedeId)}
 			name="sede_product"
-			value={sede}
+			value={sede.id}
 		>
 			<SelectTrigger className="w-[188px]">
 				<SelectValue placeholder="Elegir Sede" />
@@ -24,7 +29,7 @@ export const SedesSelect = () => {
 						sedes.length === 0
 							? <SelectItem value="a">Cargando Sedes..</SelectItem>
 							: sedes.map((sede: any) => (
-								<SelectItem key={sede.id} value={sede.nombre}>{sede.nombre}</SelectItem>
+								<SelectItem key={sede.id} value={sede.id}>{sede.nombre}</SelectItem>
 							))
 					}
 				</SelectGroup>

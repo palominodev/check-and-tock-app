@@ -9,11 +9,11 @@ import { InfoCard } from "@/components/InfoCard";
 export const InventarioPage = () => {
 	const date = useFilterStore(state => state.selectDate)
 	const {filterReportes,reportes} = useReportes()
-	const selectSede = useFilterStore(state => state.selectSede)
+	const selectSede = useFilterStore(state => state.selectSede) || { id: '', nombre: '' }
 	
 	useEffect(() => {
-		if(selectSede !== '' && date !== '') {
-			filterReportes(selectSede, date);			
+		if(selectSede.id !== '' && date !== '') {
+			filterReportes(selectSede.id, date);			
 		}
 	}, [selectSede, date])
 	

@@ -10,7 +10,7 @@ export const GestionProductosPage = () => {
 		<LayoutGestionProducto>
 			<Routes>
 				<Route path="/agregar" element={<CrearProductoForm/>} />
-				<Route path="/editar" element={<EditarProductoForm/>} />
+				<Route path="/editar/:id_producto" element={<EditarProductoForm/>} />
 				<Route path="/*" element={<ProductosDashboard />} />
 			</Routes>
 			

@@ -3,9 +3,11 @@ import { LayoutDashboard } from "./layout/LayoutDashboard"
 import { useEffect } from "react"
 import { CalendarPicker } from "./components/CalendarPicker"
 import { ReportCards } from "./components/ReportCards"
+import { useFetchSedes } from "./hooks/useSedes"
 
 
 function App() {
+	useFetchSedes()
   
   const navigate = useNavigate()
   useEffect(() => {

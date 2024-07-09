@@ -15,7 +15,7 @@ type Props = {
 
 export const getReport = async ({ fecha,sede }: Props) => {
 	try {
-		
+		if(!sede) return
 		const date_format = addDays(new Date(fecha), 1);
 		const startDate = Timestamp.fromDate(
 			set(date_format, {
