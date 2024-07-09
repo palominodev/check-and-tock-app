@@ -1,10 +1,11 @@
 import { useToast } from "@/components/ui/use-toast";
 import { CategoriaSelect } from "../../../components/CategoriaSelect";
 import { SedesSelect } from "../../../components/SedesSelect";
-import { Product, addProduct } from "../../../firebase/service/addProduct";
+import { addProduct } from "../../../firebase/service/addProduct";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
+import { Product } from "@/store/dataStore";
 
 export const CrearProductoForm = () => {
 	const {toast} = useToast()

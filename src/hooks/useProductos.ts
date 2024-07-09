@@ -9,8 +9,8 @@ export const useProductos = () => {
 	useEffect(() => {
 		const fetchProducts = async () => {
 			if(allProducts.length ===0) {
-				const productsFetch = await getAllProducts()
-				setAllProducts(productsFetch)
+				const {products} = await getAllProducts()
+				setAllProducts(products)
 			}
 		}
 		fetchProducts()

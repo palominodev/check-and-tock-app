@@ -17,18 +17,19 @@ export const TableProducts = () => {
 				<TableRow>
 					<TableHead>Categoria</TableHead>
 					<TableHead>Nombre</TableHead>
+					<TableHead>Sedes</TableHead>
 					<TableHead>Precio</TableHead>
 					<TableHead>Cantidad mínima</TableHead>
 					<TableHead>Opciones</TableHead>
-					{/* <TableHead>Sedes</TableHead> */}
 				</TableRow>
 			</TableHeader>
 			<TableBody>
 				{
 					allProducts.map((product) => (
 						<TableRow key={product.id}>
-							<TableCell>{product.categoria}</TableCell>
+							<TableCell>{product.category.name}</TableCell>
 							<TableCell>{product.name}</TableCell>
+							<TableCell>{product.sede.nombre}</TableCell>
 							<TableCell>{product.price}</TableCell>
 							<TableCell>{product.cantidad_minima}</TableCell>
 							<TableCell>

@@ -5,12 +5,15 @@ export type Sede = {
 }
 
 export type Product = {
-	id: string
-	name: string
-	price: string
-	sede: string
-	categoria: string
-	cantidad_minima: string
+    id: string
+    name: string,
+    price: number,
+    category: Categoria,
+    initial_count: number,
+    daily_income: number,
+    final_count: number,
+	sede:Sede
+	cantidad_minima: number
 }
 
 export type ItemReporte = {
