@@ -1,6 +1,7 @@
 import { useReportes } from "@/hooks/useReportes"
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "./ui/table"
 import { ScrollArea } from "./ui/scroll-area"
+import { ReportProducto } from "@/types"
 
 
 export const TablaData = () => {
@@ -21,8 +22,8 @@ export const TablaData = () => {
 				<TableBody>
 					{
 						reportes.productos.length === 0 ? null
-							: reportes.productos.map(reporte => (
-								<TableRow key={reporte.name}>
+							: reportes.productos.map((reporte:any) => (
+								<TableRow key={reporte.id}>
 									<TableCell className="font-medium">{reporte.category}</TableCell>
 									<TableCell>{reporte.name}</TableCell>
 									<TableCell className="text-right">{reporte.initial_count}</TableCell>

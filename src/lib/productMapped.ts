@@ -1,8 +1,11 @@
-import { Product } from "@/store/dataStore"
+// import { Product } from "@/store/dataStore"
+
+import { GetProducto } from "@/types"
 
 
-export const productMapped = (array:any[]):Product[] => {
-	const arrayMapped:Product[] = array.map((item) => ({
+export const productMapped = (array:any[]):GetProducto[] => {
+	console.log(array)
+	const arrayMapped:GetProducto[] = array.map((item) => ({
 		id: item.id,
 		name: item.name,
 		category: item.categoria,
@@ -12,7 +15,7 @@ export const productMapped = (array:any[]):Product[] => {
 		sede: item.sede,
 		cantidad_minima: item.cantidad_minima,
 		price: item.price
-	} as Product))
-	
+	} as GetProducto))
+	console.log(arrayMapped)
 	return arrayMapped
 }

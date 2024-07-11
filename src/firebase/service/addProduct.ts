@@ -1,9 +1,15 @@
 import { addDoc, collection, doc, getDocs } from "firebase/firestore"
 import { FirebaseDB } from "../config"
-import { Product } from "@/store/dataStore"
 
+type Props = {
+	name: string,
+	sede: string,
+	price: string,
+	categoria: string,
+	cantidad_minima: string
+}
 
-export const addProduct = async(product: Product) =>{
+export const addProduct = async(product: Props) =>{
 	try {
 		const arrayProduct:any = []
 		const sedeRef = doc(FirebaseDB, 'sede', product.sede)

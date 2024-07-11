@@ -1,6 +1,7 @@
 import { create } from "zustand"
-import { Categoria, Reporte, Sede, useDataStore } from "./dataStore"
+import { useDataStore } from "./dataStore"
 import { parseTime } from "../lib/parseTime"
+import { Categoria, Reporte, Sede } from "@/types"
 
 type State = {
 	selectSede: Sede
@@ -19,8 +20,17 @@ const date = new Date()
 
 const InitialState = {
 	filterReportes: {
+		id:'',
+		sede: {
+			id: '',
+			nombre: ''
+		},
 		fecha: date,
-		nombre: "",
+		usuario: {
+			displayName: '',
+			id: '',
+			rol: '',
+		},
 		productos: []
 	},
 	selectDate: parseTime(date)

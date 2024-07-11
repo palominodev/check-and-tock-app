@@ -8,11 +8,27 @@ export interface Reporte {
 }
 
 export interface GetProducto {
-	category: string,
-	daily_income: 0,
+	category: Categoria,
+	daily_income: number,
 	id: string,
 	initial_count: number
+	final_count: number
 	name: string
+	sede: Sede
+	price: number
+	cantidad_minima: number
+}
+
+export interface ReportProducto {
+	category: string
+	daily_income: number,
+	id: string,
+	initial_count: number
+	final_count: number
+	name: string
+	sede: Sede
+	price: number
+	cantidad_minima: number
 }
 
 export interface Sede {
