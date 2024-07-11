@@ -1,7 +1,6 @@
 import { useReportes } from "@/hooks/useReportes"
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "./ui/table"
 import { ScrollArea } from "./ui/scroll-area"
-import { ReportProducto } from "@/types"
 
 
 export const TablaData = () => {

@@ -5,7 +5,6 @@ import { addProduct } from "../../../firebase/service/addProduct";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import { Product } from "@/store/dataStore";
 
 export const CrearProductoForm = () => {
 	const {toast} = useToast()
@@ -16,12 +15,12 @@ export const CrearProductoForm = () => {
 			title: "Creando producto..."
 		})
 		const {type} = await addProduct({
-			name: name_product,
-			sede: sede_product,
-			price: price_product,
-			categoria: categoria_product,
-			cantidad_minima: cantidad_minima
-		} as Product)
+			name: name_product as string,
+			sede: sede_product as string,
+			price: price_product as string,
+			categoria: categoria_product as string,
+			cantidad_minima: cantidad_minima as string
+		})
 		if(type === "Repited"){
 			toast({
 				variant: "destructive",
