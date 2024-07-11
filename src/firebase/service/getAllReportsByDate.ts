@@ -2,7 +2,7 @@ import { addDays, set } from "date-fns";
 import { DocumentData, DocumentReference, Timestamp, collection, getDocs, query, where } from "firebase/firestore";
 import { FirebaseDB } from "../config";
 import { getDataRef } from "./getDataRef";
-import { Reporte} from "@/store/dataStore";
+import { Reporte } from "@/types";
 
 export const getAllReportsByDate = async({fecha}:{fecha:string}) => {
 	const date_format = addDays(new Date(fecha), 1);

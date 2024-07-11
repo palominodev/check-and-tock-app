@@ -35,7 +35,7 @@ export const InventarioPage = () => {
 			</div>
 		</header>
 		<main className="my-10 row-start-5 row-end-13">
-			
+			<h1>{selectSede.nombre}</h1>
 			<div className="">
 				<TablaData />
 			</div>

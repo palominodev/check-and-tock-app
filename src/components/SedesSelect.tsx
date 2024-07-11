@@ -10,7 +10,6 @@ export const SedesSelect = () => {
 
 	useEffect(() => {
 		setSelectedSede(sede.id)
-		console.log(0)
 	},[sede])
 
 	return (

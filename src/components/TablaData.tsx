@@ -12,9 +12,10 @@ export const TablaData = () => {
 				<TableHeader className="sticky top-0">
 					<TableRow>
 						<TableHead className="w-[100px]">Tipo</TableHead>
-						<TableHead>Sede</TableHead>
 						<TableHead>Producto</TableHead>
-						<TableHead className="text-right">Cantidad</TableHead>
+						<TableHead className="text-right">Cantidad inicial</TableHead>
+						<TableHead className="text-right">Ingreso diario</TableHead>
+						<TableHead className="text-right">Cantidad final</TableHead>
 					</TableRow>
 				</TableHeader>
 				<TableBody>
@@ -22,10 +23,11 @@ export const TablaData = () => {
 						reportes.productos.length === 0 ? null
 							: reportes.productos.map(reporte => (
 								<TableRow key={reporte.name}>
-									<TableCell className="font-medium">{reporte.categoria}</TableCell>
-									<TableCell>{reporte.sede}</TableCell>
+									<TableCell className="font-medium">{reporte.category}</TableCell>
 									<TableCell>{reporte.name}</TableCell>
-									<TableCell className="text-right">{reporte.count}</TableCell>
+									<TableCell className="text-right">{reporte.initial_count}</TableCell>
+									<TableCell className="text-right">{reporte.daily_income}</TableCell>
+									<TableCell className="text-right">{reporte.final_count}</TableCell>
 								</TableRow>
 							))
 					}

@@ -20,7 +20,6 @@ export const CategoriaSelect = () => {
 	},[])
 
 	useEffect(() => {
-		console.log(categoria)
 		setSelectedCategoria(categoria.id)
 	},[categoria])
   return (
