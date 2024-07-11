@@ -65,6 +65,10 @@ export const useDataStore = create<State>((set) => ({
 		fecha: new Date(),
 		nombre: '',
 		productos: [],
+		sede: {
+			id: '',
+			nombre: '',
+		}
 	},
 	allReports: [],
 	setSedes: (sedes:Sede[]) => set(() => ({sede: sedes})),
@@ -73,3 +77,5 @@ export const useDataStore = create<State>((set) => ({
 	setAllReports: (allReport:AllReport) => set(() => ({allReports: allReport})),
 	setAllProducts: (allProducts) => set(() => ({allProducts: allProducts}))
 }))
+
+export const sedes = useDataStore.getState().sede

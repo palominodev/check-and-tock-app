@@ -31,7 +31,7 @@ export const getReport = async ({ fecha,sede }: Props) => {
 				seconds: 59,
 			})
 		);
-		const reportesSnapshot = collection(FirebaseDB, "reportes");
+		const reportesSnapshot = collection(FirebaseDB, "reporte");
 
 		const q = query(
 			reportesSnapshot,

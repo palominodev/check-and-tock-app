@@ -21,6 +21,8 @@ export const useReportes = () => {
   };
   const allReportsByDate = async(fecha:string) => {
     const allReportsFetch = await getAllReportsByDate({fecha})    
+    console.log(allReportsFetch);
+    
     setAllReports(allReportsFetch);
   }
   return {
