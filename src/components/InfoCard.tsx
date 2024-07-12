@@ -21,7 +21,7 @@ export const InfoCard = ({reportes}: Props) => {
 		<CardContent>
 			{
 				!(reportes.usuario?.displayName)
-				? <div className="text-2xl font-bold">Sin Reporte</div>
+				? <div className="text-xl font-bold">Sin Reporte</div>
 				: <>
 					<div className="text-2xl font-bold">{reportes.usuario?.displayName}</div>
 					<p className="text-xs text-muted-foreground *:font-bold italic">Informe enviado a las <span>{format(reportes.fecha, 'hh:mm aaaa')}</span></p>
