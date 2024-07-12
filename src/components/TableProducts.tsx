@@ -5,10 +5,12 @@ import { Button, buttonVariants } from "./ui/button"
 import { Ellipsis } from "lucide-react"
 import { Link } from "react-router-dom"
 import { ScrollArea } from "./ui/scroll-area"
+import { useFilterStore } from "@/store/filtersStore"
 
 export const TableProducts = () => {
 	const {allProducts} = useProductos()
-	
+	const sede = useFilterStore(state => state.selectSede)
+
   return (
 	<ScrollArea className="h-96 border rounded-md relative">
 		<Table className="">
@@ -25,8 +27,9 @@ export const TableProducts = () => {
 			</TableHeader>
 			<TableBody>
 				{
-					allProducts.map((product) => (
-						<TableRow key={product.id}>
+					allProducts.map((product) => {
+						if(product.sede.id === sede?.id && !!sede?.id) return (
+							<TableRow key={product.id}>
 							<TableCell>{product.category.name}</TableCell>
 							<TableCell>{product.name}</TableCell>
 							<TableCell>{product.sede.nombre}</TableCell>
@@ -48,7 +51,8 @@ export const TableProducts = () => {
 								</Popover>
 							</TableCell>
 						</TableRow>
-					))
+						)
+					})
 				}
 			</TableBody>
 		</Table>

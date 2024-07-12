@@ -5,7 +5,6 @@ import { EditarProductoForm } from "./products/EditarProductoForm"
 import { ProductosDashboard } from "./products/ProductosDashboard"
 
 export const GestionProductosPage = () => {
-	// const { toast } = useToast()
 	return (
 		<LayoutGestionProducto>
 			<Routes>
@@ -13,7 +12,7 @@ export const GestionProductosPage = () => {
 				<Route path="/editar/:id_producto" element={<EditarProductoForm/>} />
 				<Route path="/*" element={<ProductosDashboard />} />
 			</Routes>
-			
+
 		</LayoutGestionProducto>
 	)
 }
