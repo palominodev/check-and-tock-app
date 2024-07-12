@@ -22,7 +22,7 @@ export const TablaData = () => {
 					{
 						reportes.productos.length === 0 ? null
 							: reportes.productos.map((reporte:any) => (
-								<TableRow key={reporte.id}>
+								<TableRow className={reporte.final_count === 0 ? 'bg-red-600/10' : ''} key={reporte.id}>
 									<TableCell className="font-medium">{reporte.category}</TableCell>
 									<TableCell>{reporte.name}</TableCell>
 									<TableCell className="text-right">{reporte.initial_count}</TableCell>
@@ -31,6 +31,7 @@ export const TablaData = () => {
 								</TableRow>
 							))
 					}
+					
 				</TableBody>
 			</Table>
 		</ScrollArea>
