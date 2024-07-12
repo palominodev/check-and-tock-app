@@ -73,21 +73,18 @@ export const InventarioPage = () => {
               <DialogTitle>
                 Requerimientos de sede: {selectSede?.nombre}
               </DialogTitle>
-              <DialogDescription>
+              <DialogDescription asChild>
                 <ul className="mt-4">
                   {productos.map((product) => {
                     if (product.final_count !== 0) return;
                     return (
-                      <>
-                        <li
-                          className="list-none flex justify-between hover:bg-slate-600/5 p-2"
-                          key={product.id}
-                        >
+                      <div key={product.id}>
+                        <li className="list-none flex justify-between hover:bg-slate-600/5 p-2">
                           {product.name}
-						  <span>{product.final_count}</span>
+                          <span>{product.final_count}</span>
                         </li>
                         <Separator />
-                      </>
+                      </div>
                     );
                   })}
                 </ul>
