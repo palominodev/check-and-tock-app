@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom"
 import { LateralMenu } from "../components/LateralMenu"
 import { InventarioPage } from "../pages/dashboard/InventarioPage"
 import { GestionProductosPage } from "../pages/dashboard/GestionProductosPage"
+import { ConfigPage } from "@/pages/config/ConfigPage"
 
 export const LayoutDashboard = ({ children }: Readonly<{ children: React.ReactNode }>) => {
 	return (
@@ -12,6 +13,7 @@ export const LayoutDashboard = ({ children }: Readonly<{ children: React.ReactNo
 					<Route path="/" element={children} />
 					<Route path="/inventario" element={<InventarioPage />} />
 					<Route path="/productos/*" element={<GestionProductosPage />} />
+					<Route path="/config/*" element={<ConfigPage />} />
 				</Routes>
 			</section>
 		</>
