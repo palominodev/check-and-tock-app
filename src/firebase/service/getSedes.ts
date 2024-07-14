@@ -7,3 +7,7 @@ export const getSedes = async() => {
 export const getCategorias = async() => {
 	return await getCollections('categoria')
 }
+
+export const getUsers = async() => {
+	return await getCollections('usuarios')
+}

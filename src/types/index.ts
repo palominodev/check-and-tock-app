@@ -1,3 +1,4 @@
+import { DocumentReference } from "firebase/firestore"
 
 export interface Reporte {
 	id: string
@@ -40,6 +41,7 @@ export interface Usuario {
 	displayName: string
 	id: string
 	rol: string
+	sede?: DocumentReference[]
 }
 
 export type Categoria = {

@@ -9,17 +9,22 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useToast } from "@/components/ui/use-toast";
+import { createUser } from "@/firebase/service/createUser";
 import { useDataStore } from "@/store/dataStore";
 import { Sede } from "@/types";
 import { CheckedState } from "@radix-ui/react-checkbox";
-import { FormEvent, useState } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-type SedesCheckedType = {
+export type SedesCheckedType = {
   checked: CheckedState;
   sede: Sede;
 };
 
 export const UserForm = () => {
+  const navigate = useNavigate()
+	const {toast} = useToast()
   const sedes = useDataStore((state) => state.sede);
   const [sedeChecked, setSedeChecked] = useState<SedesCheckedType[]>([]);
 
@@ -34,12 +39,36 @@ export const UserForm = () => {
   };
 
   const handleSubmit = async(e: any) => {
-	e.preventDefault()
+	try {
+		e.preventDefault()
 	const data = Object.fromEntries(new FormData(e.target))
+  toast({
+    title: 'Espera...',
+    description: 'Creando usuario...',
+  })
 	await createUser({
-		...data,
-		sedes: sedeChecked
+		email: data.email as string,
+		sedes: sedeChecked,
+		displayName: data.displayName as string,
+		rol: data.rol as string,
+		password: data.password as string,
 	})
+		toast({
+      className: 'bg-green-500/20',
+			title: 'Exito',
+			description: 'El usuario se creó correctamente',
+			duration: 1500
+		})
+    navigate('/config/usuario')
+	} catch (error) {
+		toast({
+			title: 'Error al crear usuario',
+			description: `Vuelve a intentarlo mas tarte o llama a soporte tecnico`,
+			duration: 1500,
+			variant: 'destructive'
+		})
+	}
+	
   }
 
   return (
@@ -50,9 +79,12 @@ export const UserForm = () => {
           <Input name="displayName" type="text" />
         </Label>
         <Label className="w-full">
+          <h2 className="font-bold my-4 text-lg">Ingresar correo</h2>
+          <Input name="email" type="email" />
+        </Label>
+        <Label className="w-full">
           <h2 className="font-bold my-4 text-lg">Sede</h2>
           {sedes.map((sede) => (
-            <>
               <Label className="flex gap-2 mb-2 ml-4" key={sede.id}>
                 <Checkbox
                   onCheckedChange={(checked) =>
@@ -62,7 +94,6 @@ export const UserForm = () => {
                 />{" "}
                 {sede.nombre}
               </Label>
-            </>
           ))}
         </Label>
         <Label className="w-full">
@@ -80,10 +111,6 @@ export const UserForm = () => {
         <Label className="w-full">
           <h2 className="font-bold my-4 text-lg">Ingresar contraseña</h2>
           <Input name="password" type="text" />
-        </Label>
-        <Label className="w-full">
-          <h2 className="font-bold my-4 text-lg">Ingresar contraseña</h2>
-          <Input name="valid-password" type="text" />
         </Label>
         <Button className="mt-4 font-bold">Crear usuario</Button>
       </form>

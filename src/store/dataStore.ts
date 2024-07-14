@@ -1,7 +1,8 @@
-import { Categoria, GetProducto, Reporte, Sede } from '@/types';
+import { Categoria, GetProducto, Reporte, Sede, Usuario } from '@/types';
 import { create } from 'zustand'
 
 type State = {
+	usuarios: Usuario[]
 	allProducts: GetProducto[];
 	allReports: Reporte[]
 	sede: Sede[],
@@ -12,9 +13,11 @@ type State = {
 	setCategorias: (categorias: Categoria[]) => void
 	setAllReports: (allReport: Reporte[]) => void
 	setAllProducts: (allProducts: GetProducto[]) => void
+	setUsuarios: (usuarios: Usuario[]) => void
 }
 
 export const useDataStore = create<State>((set) => ({
+	usuarios: [],
 	allProducts: [],
 	sede: [],
 	categoria: [],
@@ -33,6 +36,7 @@ export const useDataStore = create<State>((set) => ({
 		id: ''
 	},
 	allReports: [],
+	setUsuarios: (usuarios) => set(() => ({usuarios})),
 	setSedes: (sedes:Sede[]) => set(() => ({sede: sedes})),
 	setCategorias: (categoria: Categoria[]) => set(() => ({categoria: categoria})),
 	setReportes: (reporte:Reporte) => set(() => ({reporte})),
