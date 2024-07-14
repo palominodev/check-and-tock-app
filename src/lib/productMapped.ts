@@ -4,7 +4,6 @@ import { GetProducto } from "@/types"
 
 
 export const productMapped = (array:any[]):GetProducto[] => {
-	console.log(array)
 	const arrayMapped:GetProducto[] = array.map((item) => ({
 		id: item.id,
 		name: item.name,
@@ -16,6 +15,5 @@ export const productMapped = (array:any[]):GetProducto[] => {
 		cantidad_minima: item.cantidad_minima,
 		price: item.price
 	} as GetProducto))
-	console.log(arrayMapped)
 	return arrayMapped
 }

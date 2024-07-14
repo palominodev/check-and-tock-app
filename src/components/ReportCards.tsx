@@ -22,7 +22,6 @@ export const ReportCards = () => {
 			<div className="grid grid-cols-3 gap-3 mt-5">
 				{
 					allReports.map((reporte, i) => {
-						// console.log(reporte.usuario?.displayName)
 						return <Card key={`${i}`}>
 						<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
 							<CardTitle className="text-sm font-medium">Informe</CardTitle>

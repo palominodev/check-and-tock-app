@@ -18,7 +18,6 @@ export const EditarProductoForm = () => {
 	
 
 	useEffect(() => {
-		console.log(product);
 		
 		if(product?.sede?.id) {
 			setSede(product?.sede.id)

@@ -87,7 +87,6 @@ export const getReport = async ({ fecha,sedeId }: Props):Promise<Reporte|null> =
 				}
 			}
 		}
-		// console.log(reportesMapped)
 		return reportesMapped as Reporte;
 	} catch (error) {
 		console.error("Error al obtener el reporte:", error);

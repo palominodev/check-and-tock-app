@@ -25,7 +25,6 @@ export const createUser = async(userForm:CreateUserType) => {
 		sedeRefArray.push(sedeRef)
 	})
 
-	console.log(sedeRefArray);
 	await setDoc(userDoc, {
 		displayName: userForm.displayName,
 		rol: userForm.rol,

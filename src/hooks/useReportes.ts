@@ -11,7 +11,6 @@ export const useReportes = () => {
   const setReporte = useDataStore((state) => state.setReportes);
   const processfilterReportes = async (sedeId: string, date: string) => {
     const reportesFetch = await getReport({ fecha: date, sedeId });	
-    console.log(reportesFetch)
     if (!reportesFetch) return;
     const reporte:Reporte = {
       id: reportesFetch.id,
