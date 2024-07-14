@@ -5,11 +5,11 @@ import { Button, buttonVariants } from "./ui/button"
 import { Ellipsis } from "lucide-react"
 import { Link } from "react-router-dom"
 import { ScrollArea } from "./ui/scroll-area"
-import { useFilterStore } from "@/store/filtersStore"
+// import { useFilterStore } from "@/store/filtersStore"
 
 export const TableProducts = () => {
 	const {allProducts} = useProductos()
-	const sede = useFilterStore(state => state.selectSede)
+	// const sede = useFilterStore(state => state.selectSede)
 
   return (
 	<ScrollArea className="h-96 border rounded-md relative">
@@ -19,7 +19,7 @@ export const TableProducts = () => {
 				<TableRow>
 					<TableHead>Categoria</TableHead>
 					<TableHead>Nombre</TableHead>
-					<TableHead>Sedes</TableHead>
+					{/* <TableHead>Sedes</TableHead> */}
 					<TableHead>Precio</TableHead>
 					<TableHead>Cantidad mínima</TableHead>
 					<TableHead>Opciones</TableHead>
@@ -28,11 +28,11 @@ export const TableProducts = () => {
 			<TableBody>
 				{
 					allProducts.map((product) => {
-						if(product.sede.id === sede?.id && !!sede?.id) return (
+						 return (
 							<TableRow key={product.id}>
 							<TableCell>{product.category.name}</TableCell>
 							<TableCell>{product.name}</TableCell>
-							<TableCell>{product.sede.nombre}</TableCell>
+							{/* <TableCell>{product.sede.nombre}</TableCell> */}
 							<TableCell>{product.price}</TableCell>
 							<TableCell>{product.cantidad_minima}</TableCell>
 							<TableCell>

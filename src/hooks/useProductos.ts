@@ -8,13 +8,13 @@ export const useProductos = () => {
 	
 	useEffect(() => {
 		const fetchProducts = async () => {
-			if(allProducts.length ===0) {
+			// if(allProducts.length ===0) {
 				const {products} = await getAllProducts()
 				setAllProducts(products)
-			}
+			// }
 		}
 		fetchProducts()
-	}, [allProducts.length, setAllProducts])
+	}, [])
 	
 	return {
 		allProducts
