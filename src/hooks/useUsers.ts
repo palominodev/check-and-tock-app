@@ -1,6 +1,5 @@
 import { getUsers } from "@/firebase/service/getSedes"
 import { useDataStore } from "@/store/dataStore"
-import { Usuario } from "@/types"
 import { useEffect } from "react"
 
 export const useUsers = () => {
