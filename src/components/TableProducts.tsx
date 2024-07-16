@@ -5,6 +5,7 @@ import { Button, buttonVariants } from "./ui/button"
 import { Ellipsis } from "lucide-react"
 import { Link } from "react-router-dom"
 import { ScrollArea } from "./ui/scroll-area"
+import { DeleteDialog } from "./DeleteDialog"
 // import { useFilterStore } from "@/store/filtersStore"
 
 export const TableProducts = () => {
@@ -46,7 +47,9 @@ export const TableProducts = () => {
 									<PopoverContent className="flex flex-col gap-2 w-48">
 										<h4 className="font-bold text-lg">Opciones:</h4>
 										<Link to={`editar/${product.id}`} className={`${buttonVariants({variant: 'outline'})}`}>Editar</Link>
-										<Link to={'agregar'} className={`${buttonVariants({variant: 'outline'})}`}>Agregar</Link>
+										<DeleteDialog name={product.name} id={product.id}>
+											<Button variant={'destructive'}>Eliminar</Button>
+										</DeleteDialog>
 									</PopoverContent>
 								</Popover>
 							</TableCell>

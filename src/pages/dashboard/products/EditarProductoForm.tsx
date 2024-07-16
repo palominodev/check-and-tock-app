@@ -1,5 +1,4 @@
 import { CategoriaSelect } from "@/components/CategoriaSelect"
-import { SedesSelect } from "@/components/SedesSelect"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -7,11 +6,10 @@ import { useToast } from "@/components/ui/use-toast"
 import { updateProduct } from "@/firebase/service/updateProduct"
 import { useDataStore } from "@/store/dataStore"
 import { useFilterStore } from "@/store/filtersStore"
-import { FormEvent, useEffect, useState } from "react"
+import { FormEvent, useEffect} from "react"
 import { useParams } from "react-router-dom"
 
 export const EditarProductoForm = () => {
-	const [isLoading, setIsLoading] = useState(false)
 	const {toast} = useToast()
 	const products = useDataStore(state => state.allProducts)
 	const setSede = useFilterStore(state => state.setSelectedSede)
@@ -33,7 +31,6 @@ export const EditarProductoForm = () => {
 	
 	const onEditProduct = async(e:FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
-		setIsLoading(true)
 		toast({
 			description: "Editando producto..."
 		})

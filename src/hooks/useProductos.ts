@@ -17,6 +17,7 @@ export const useProductos = () => {
 	}, [])
 	
 	return {
-		allProducts
+		allProducts,
+		setAllProducts
 	}
 }
